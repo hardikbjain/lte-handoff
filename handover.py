@@ -1,6 +1,12 @@
 import streamlit as st
 import numpy as np
+# Import matplotlib with Agg backend
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+# Clear any existing plots at the start of each run
+plt.clf()
 
 st.title('LTE Handover Region Visualization')
 
