@@ -1,21 +1,29 @@
 import streamlit as st
 import numpy as np
-# Import matplotlib with Agg backend
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-# Clear any existing plots at the start of each run
-plt.clf()
-
 st.title('LTE Handover Region Visualization')
 
-# Create sidebar sliders
+# Create sidebar sliders with AP input values
 st.sidebar.header('Threshold Parameters')
-A1 = st.sidebar.slider('A1 Threshold (dBm)', -110, -60, -70)
-A2 = st.sidebar.slider('A2 Threshold (dBm)', -110, -60, -75)
-A5_1 = st.sidebar.slider('A5-1 Threshold (dBm)', -110, -60, -90)
-A5_2 = st.sidebar.slider('A5-2 Threshold (dBm)', -110, -60, -95)
+
+# Function to format the label with both values
+def format_label(value):
+    ap_value = value + 140
+    return f"{value} dBm (AP input: {ap_value})"
+
+# Create columns in sidebar for each threshold
+st.sidebar.header('Threshold Parameters')
+A1 = st.sidebar.slider('A1 Threshold', -110, -60, -70, 
+                      format=format_label)
+A2 = st.sidebar.slider('A2 Threshold', -110, -60, -75, 
+                      format=format_label)
+A5_1 = st.sidebar.slider('A5-1 Threshold', -110, -60, -90, 
+                        format=format_label)
+A5_2 = st.sidebar.slider('A5-2 Threshold', -110, -60, -95, 
+                        format=format_label)
 hysteresis = st.sidebar.slider('Hysteresis (dB)', 0, 10, 3)
 
 # Create the plot
