@@ -9,21 +9,31 @@ st.title('LTE Handover Region Visualization')
 # Create sidebar sliders with AP input values
 st.sidebar.header('Threshold Parameters')
 
-# Function to format the label with both values
-def format_label(value):
-    ap_value = value + 140
-    return f"{value} dBm (AP input: {ap_value})"
-
 # Create columns in sidebar for each threshold
-st.sidebar.header('Threshold Parameters')
-A1 = st.sidebar.slider('A1 Threshold', -110, -60, -70, 
-                      format=format_label)
-A2 = st.sidebar.slider('A2 Threshold', -110, -60, -75, 
-                      format=format_label)
-A5_1 = st.sidebar.slider('A5-1 Threshold', -110, -60, -90, 
-                        format=format_label)
-A5_2 = st.sidebar.slider('A5-2 Threshold', -110, -60, -95, 
-                        format=format_label)
+col1, col2 = st.sidebar.columns([2, 1])
+with col1:
+    A1 = st.slider('A1 Threshold (dBm)', -110, -60, -70)
+with col2:
+    st.text(f'AP: {A1 + 140}')
+
+col1, col2 = st.sidebar.columns([2, 1])
+with col1:
+    A2 = st.slider('A2 Threshold (dBm)', -110, -60, -75)
+with col2:
+    st.text(f'AP: {A2 + 140}')
+
+col1, col2 = st.sidebar.columns([2, 1])
+with col1:
+    A5_1 = st.slider('A5-1 Threshold (dBm)', -110, -60, -90)
+with col2:
+    st.text(f'AP: {A5_1 + 140}')
+
+col1, col2 = st.sidebar.columns([2, 1])
+with col1:
+    A5_2 = st.slider('A5-2 Threshold (dBm)', -110, -60, -95)
+with col2:
+    st.text(f'AP: {A5_2 + 140}')
+
 hysteresis = st.sidebar.slider('Hysteresis (dB)', 0, 10, 3)
 
 # Create the plot
